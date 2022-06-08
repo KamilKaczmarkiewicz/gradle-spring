@@ -6,11 +6,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Builder//czym się różni od @SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString
-@EqualsAndHashCode
 @Entity
 @Table(name="users")
 public class User {
