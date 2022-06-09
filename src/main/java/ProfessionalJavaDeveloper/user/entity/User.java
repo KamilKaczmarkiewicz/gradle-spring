@@ -1,8 +1,10 @@
 package ProfessionalJavaDeveloper.user.entity;
 
+import ProfessionalJavaDeveloper.character.entity.Character;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,4 +21,8 @@ public class User {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private Set<Character> characters;
 }
