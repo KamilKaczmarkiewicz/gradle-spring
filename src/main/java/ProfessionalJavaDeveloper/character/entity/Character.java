@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Entity for characters owned by the user.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

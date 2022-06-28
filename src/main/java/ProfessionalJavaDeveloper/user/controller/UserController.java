@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.stream.Collectors;
 
+/**
+ * REST controller for user resource. Doesn't return entity objects but dto objects.
+ */
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -26,6 +29,9 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
+    /**
+     * @return list of users in JSON
+     */
     @GetMapping
     public ResponseEntity getUsers(){
         return ResponseEntity
@@ -34,6 +40,10 @@ public class UserController {
                         .collect(Collectors.toList()));
     }
 
+    /**
+     * @param id - id of the user
+     * @return single user in JSON or 404 when user doesn't exist
+     */
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable("id") long id){
         return userService.find(id)

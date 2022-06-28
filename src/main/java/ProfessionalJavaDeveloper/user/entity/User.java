@@ -6,6 +6,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
+
+/**
+ * Entity for the users.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

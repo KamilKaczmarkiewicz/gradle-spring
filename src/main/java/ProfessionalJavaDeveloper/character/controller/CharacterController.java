@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.stream.Collectors;
 
+/**
+ * REST controller for character resource. Doesn't return entity objects but dto objects.
+ */
 @RestController
 @RequestMapping(value = "/characters")
 public class CharacterController {
@@ -27,6 +30,9 @@ public class CharacterController {
         this.characterMapper = characterMapper;
     }
 
+    /**
+     * @return list of characters in JSON
+     */
     @GetMapping
     public ResponseEntity getCharacters(){
         return ResponseEntity
@@ -35,6 +41,10 @@ public class CharacterController {
                         .collect(Collectors.toList()));
     }
 
+    /**
+     * @param id - id of the character
+     * @return single character in JSON or 404 when user doesn't exist
+     */
     @GetMapping("/{id}")
     public ResponseEntity<CharacterDto> getCharacter(@PathVariable("id") long id){
         return characterService.find(id)
