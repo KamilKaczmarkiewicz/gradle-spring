@@ -1,14 +1,12 @@
 package ProfessionalJavaDeveloper.user.controller;
 
 import ProfessionalJavaDeveloper.user.dto.UserDto;
+import ProfessionalJavaDeveloper.user.entity.User;
 import ProfessionalJavaDeveloper.user.mapper.UserMapper;
 import ProfessionalJavaDeveloper.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
@@ -52,6 +50,14 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity
                         .notFound()
                         .build());
+    }
+
+    @PostMapping
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        User user = UserDto.dtoToEntityMapper(userDto);
+        user = userService.create(user);
+        return ResponseEntity
+                .ok(userMapper.convertUserToUserDto(user));
     }
 
 }

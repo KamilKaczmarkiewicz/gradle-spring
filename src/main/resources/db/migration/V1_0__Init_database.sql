@@ -10,9 +10,7 @@ CREATE TABLE characters (
     lvl INT NOT NULL,
     sex VARCHAR(7) NOT NULL,
     character_class VARCHAR(16) NOT NULL,
-    user_id BIGINT NOT NULL
+    user_id BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-ALTER TABLE characters
-    ADD CONSTRAINT fk_user_id
-    FOREIGN KEY (user_id) REFERENCES users(id);
