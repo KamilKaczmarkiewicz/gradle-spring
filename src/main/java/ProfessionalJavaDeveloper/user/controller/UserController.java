@@ -4,6 +4,8 @@ import ProfessionalJavaDeveloper.user.dto.UserDto;
 import ProfessionalJavaDeveloper.user.entity.User;
 import ProfessionalJavaDeveloper.user.mapper.UserMapper;
 import ProfessionalJavaDeveloper.user.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
+
+    private static final Logger logger = LogManager.getLogger("UserController");
 
     private UserService userService;
     private UserMapper userMapper;
@@ -32,6 +36,7 @@ public class UserController {
      */
     @GetMapping
     public ResponseEntity getUsers(){
+        logger.info("I am some log, because someone asked for all users");
         return ResponseEntity
                 .ok(userService.findAll().stream()
                         .map(value -> userMapper.convertUserToUserDto(value))
