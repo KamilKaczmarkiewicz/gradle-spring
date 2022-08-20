@@ -9,26 +9,28 @@ import lombok.Setter;
 import javax.persistence.*;
 
 /**
- * Entity for characters owned by the user.
+ * Entity for characters owned by the user and NPC's.
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name="characters")
-public class Character {
+public class Character extends Creature {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    private String name;
-
-    private int lvl;
-
+    /**
+     * Sex of the character.
+     */
     @Enumerated(value = EnumType.STRING)
     private Sex sex;
 
+    /**
+     * Character's class.
+     */
     @Enumerated(value = EnumType.STRING)
     @Column(name = "character_class")
     private CharacterClass characterClass;

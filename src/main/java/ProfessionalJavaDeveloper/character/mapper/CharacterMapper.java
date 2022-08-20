@@ -15,5 +15,14 @@ public interface CharacterMapper {
     @Mapping(target = "lvl", source = "lvl")
     @Mapping(target = "sex", source = "sex")
     @Mapping(target = "characterClass", source = "characterClass")
+    @Mapping(target = "strength", source = "strength")
+    @Mapping(target = "dexterity", source = "dexterity")
+    @Mapping(target = "vitality", source = "vitality")
+    @Mapping(target = "exp", source = "exp")
+    @Mapping(target = "gold", source = "gold")
+    @Mapping(target = "attributePoints", source = "attributePoints")
+    @Mapping(target = "hp", source = "hp")
+    @Mapping(target = "maxHp", source = "maxHp")
+    @Mapping(target = "isAlive", source = "isAlive")
     CharacterDto convertCharacterToCharacterDto(Character character);
 }
