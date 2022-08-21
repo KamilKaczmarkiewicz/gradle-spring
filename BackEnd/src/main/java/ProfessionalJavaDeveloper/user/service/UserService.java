@@ -3,6 +3,9 @@ package ProfessionalJavaDeveloper.user.service;
 import ProfessionalJavaDeveloper.user.entity.User;
 import ProfessionalJavaDeveloper.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +16,7 @@ import java.util.Optional;
  * Service layer for all business actions regarding user entity.
  */
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
 
@@ -45,5 +48,14 @@ public class UserService {
     @Transactional
     public User create(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user =  userRepository.findByUserName(username);
+        if (user == null) {//ToDo make it nicer
+            throw new UsernameNotFoundException("");
+        }
+        return user;
     }
 }

@@ -1,6 +1,6 @@
-INSERT INTO users (name, last_name) VALUES ('Jan', 'Kowalski');
-INSERT INTO users (name, last_name) VALUES ('Piotr', 'Mokry');
-INSERT INTO users (name, last_name) VALUES ('Ewa', 'Laska');
+INSERT INTO users (name, last_name, user_name) VALUES ('Jan', 'Kowalski', 'user');
+INSERT INTO users (name, last_name, user_name) VALUES ('Piotr', 'Mokry', 'piter');
+INSERT INTO users (name, last_name, user_name) VALUES ('Ewa', 'Laska', 'awe');
 
 INSERT INTO characters
 (name, lvl, strength, dexterity, vitality, exp, gold, attribute_points, hp, max_hp, is_alive, sex, character_class, user_id)
