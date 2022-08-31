@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 const getUser = () => {
-    axios.get(`http://localhost:8080/users/1`)
+    axios.get(`http://localhost:8080/users/1`, 
+    {withCredentials: true}
+    )
       .then(res => {
         console.log(res.data);
       })

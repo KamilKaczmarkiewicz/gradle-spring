@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background-color: #e1b382;
+    color: #2d545e;
+    font-family: Sans-Serif;
+    text-align: center;
+  }

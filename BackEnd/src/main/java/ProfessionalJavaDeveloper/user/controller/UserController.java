@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
  * REST controller for user resource. Doesn't return entity objects but dto objects.
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/users")
 public class UserController {
 
