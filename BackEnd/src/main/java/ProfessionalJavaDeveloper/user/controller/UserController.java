@@ -65,4 +65,12 @@ public class UserController {
                 .ok(userMapper.convertUserToUserDto(user));
     }
 
+    @GetMapping("/register")
+    public ResponseEntity registerUser(){
+        return ResponseEntity
+                .ok(userService.findAll().stream()
+                        .map(value -> userMapper.convertUserToUserDto(value))
+                        .collect(Collectors.toList()));
+    }
+
 }

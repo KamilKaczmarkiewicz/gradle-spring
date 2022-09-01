@@ -35,6 +35,7 @@ public class User implements UserDetails {
     @Column(name = "user_name")
     private String userName;
 
+    private String password;
 
     private String name;
 
@@ -52,7 +53,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "pass";
+        return password;
     }
 
     @Override

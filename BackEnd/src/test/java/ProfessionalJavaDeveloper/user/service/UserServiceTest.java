@@ -21,6 +21,8 @@ class UserServiceTest {
     private static final long FAKE_USER_ID = 100;
     private static final String NAME = "noweImie";
     private static final String LAST_NAME = "noweNazwisko";
+    private static final String USER_NAME = "noweUserName";
+    private static final String USER_PASSWORD = "pass";
     private static final Set<Character> CHARACTERS = Collections.emptySet();
 
     @Autowired
@@ -46,6 +48,8 @@ class UserServiceTest {
         User user = User.builder()
                 .name(NAME)
                 .lastName(LAST_NAME)
+                .userName(USER_NAME)
+                .password(USER_PASSWORD)
                 .characters(CHARACTERS)
                 .build();
         User output = userService.create(user);
