@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.stream.Collectors;
 
 /**
@@ -71,6 +72,20 @@ public class UserController {
                 .ok(userService.findAll().stream()
                         .map(value -> userMapper.convertUserToUserDto(value))
                         .collect(Collectors.toList()));
+    }
+
+    @GetMapping("/me")
+    public String getCurrentUser(Principal principal){
+        return principal.getName();
+    }
+
+    @GetMapping("/redirect-to-home")
+    public String redirectToHome(){
+        String body =
+                "<HTML><body> <h1 style=\"text-align: center;\">" +
+                        "<a href=\"http://localhost:3000/\">Click me to go to main site :D</a>" +
+                        "</h1></body></HTML>";
+        return (body);
     }
 
 }
