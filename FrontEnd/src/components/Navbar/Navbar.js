@@ -10,7 +10,7 @@ const logout = () => {
     )
 }
 const test = () => {
-    axios.get(`http://localhost:8080/users/me`, 
+    axios.get(`http://localhost:8080/users/my-name`, 
     {withCredentials: true}
     )
       .then(res => {

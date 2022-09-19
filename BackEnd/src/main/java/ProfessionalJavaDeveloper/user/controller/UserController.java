@@ -75,7 +75,17 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public String getCurrentUser(Principal principal){
+    public ResponseEntity<UserDto> getCurrentUser(Principal principal){
+        return userService.find(principal.getName())
+                .map(value -> ResponseEntity
+                        .ok(userMapper.convertUserToUserDto(value)))
+                .orElseGet(() -> ResponseEntity
+                        .notFound()
+                        .build());
+    }
+
+    @GetMapping("/my-name")
+    public String getCurrentUserName(Principal principal){
         return principal.getName();
     }
 

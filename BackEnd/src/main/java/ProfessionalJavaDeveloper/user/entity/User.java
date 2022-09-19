@@ -37,6 +37,9 @@ public class User implements UserDetails {
 
     private String password;
 
+    /**
+     * User's first name.
+     */
     private String name;
 
     @Column(name = "last_name")

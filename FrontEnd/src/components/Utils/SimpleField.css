@@ -1,0 +1,15 @@
+.wrapper {
+    width: 50%;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 10px;
+}
+.first {
+    width: 200px;
+    display: inline-block;
+    border: 1px solid red;
+}
+.second {
+    border: 1px solid green;
+    display: inline-block;
+}

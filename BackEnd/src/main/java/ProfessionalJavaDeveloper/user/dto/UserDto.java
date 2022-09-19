@@ -17,12 +17,14 @@ import java.util.function.Function;
 @ToString
 public class UserDto {
     private long id;
+    private String userName;
     private String name;
     private String lastName;
     private Set<CharacterDto> characterDtos;
 
     public static User dtoToEntityMapper(UserDto userDto){
         return User.builder()
+                .userName(userDto.getUserName())
                 .name(userDto.getName())
                 .lastName(userDto.getLastName())
                 .build();

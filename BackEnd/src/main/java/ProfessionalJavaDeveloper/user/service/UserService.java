@@ -41,6 +41,16 @@ public class UserService implements UserDetailsService {
     }
 
     /**
+     * Find single user by ID
+     *
+     * @param username - user's username
+     * @return container with user
+     */
+    public Optional<User> find(String username) {
+        return userRepository.findByUserName(username);
+    }
+
+    /**
      * Create new user.
      *
      * @param user - new user
@@ -52,10 +62,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user =  userRepository.findByUserName(username);
-        if (user == null) {//ToDo make it nicer
+        Optional<User> user =  userRepository.findByUserName(username);
+        if (user.isEmpty()) {//ToDo make it nicer
             throw new UsernameNotFoundException("");
         }
-        return user;
+        return user.get();
     }
 }
