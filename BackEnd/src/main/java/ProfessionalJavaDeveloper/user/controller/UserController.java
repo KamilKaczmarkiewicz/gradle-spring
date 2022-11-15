@@ -1,5 +1,6 @@
 package ProfessionalJavaDeveloper.user.controller;
 
+import ProfessionalJavaDeveloper.user.dto.CreateUserRequest;
 import ProfessionalJavaDeveloper.user.dto.UserDto;
 import ProfessionalJavaDeveloper.user.entity.User;
 import ProfessionalJavaDeveloper.user.mapper.UserMapper;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -23,13 +25,18 @@ public class UserController {
     private static final Logger logger = LogManager.getLogger("UserController");
 
     private UserService userService;
+
     private UserMapper userMapper;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserController(UserService userService,
-                          UserMapper userMapper){
+                          UserMapper userMapper,
+                          BCryptPasswordEncoder bCryptPasswordEncoder){
         this.userService = userService;
         this.userMapper = userMapper;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     /**
@@ -58,21 +65,26 @@ public class UserController {
                         .build());
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        User user = UserDto.dtoToEntityMapper(userDto);
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> createUser(@RequestBody CreateUserRequest request) {
+        User user = User.builder()
+                .userName(request.getUserName())
+                .name(request.getName())
+                .lastName(request.getLastName())
+                .password(bCryptPasswordEncoder.encode(request.getPassword()))
+                .build();
         user = userService.create(user);
         return ResponseEntity
                 .ok(userMapper.convertUserToUserDto(user));
     }
 
-    @GetMapping("/register")
-    public ResponseEntity registerUser(){
-        return ResponseEntity
-                .ok(userService.findAll().stream()
-                        .map(value -> userMapper.convertUserToUserDto(value))
-                        .collect(Collectors.toList()));
-    }
+//    @GetMapping("/register")
+//    public ResponseEntity registerUser(){
+//        return ResponseEntity
+//                .ok(userService.findAll().stream()
+//                        .map(value -> userMapper.convertUserToUserDto(value))
+//                        .collect(Collectors.toList()));
+//    }
 
     @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser(Principal principal){

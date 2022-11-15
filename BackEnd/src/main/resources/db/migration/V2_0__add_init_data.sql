@@ -10,7 +10,7 @@ INSERT INTO characters
 VALUES ('Kams', 1, 1, 1, 1, 0, 10, 4, 8, 8, 1, 'MALE', 'HUNTER', 2);
 INSERT INTO characters
 (name, lvl, strength, dexterity, vitality, exp, gold, attribute_points, hp, max_hp, is_alive, sex, character_class, user_id)
-VALUES ('Kalma', 1, 1, 1, 1, 0, 10, 4, 8, 8, 1, 'MALE', 'MAGE', 2);
+VALUES ('Kalma', 1, 1, 1, 1, 0, 10, 4, 8, 8, 0, 'MALE', 'MAGE', 2);
 INSERT INTO characters
 (name, lvl, strength, dexterity, vitality, exp, gold, attribute_points, hp, max_hp, is_alive, sex, character_class, user_id)
 VALUES ('Dzikus8', 1, 1, 1, 1, 0, 10, 4, 8, 8, 1, 'MALE', 'HUNTER', 2);

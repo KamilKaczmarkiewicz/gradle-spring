@@ -1,28 +1,35 @@
 package ProfessionalJavaDeveloper.character.mapper;
 
 import ProfessionalJavaDeveloper.character.dto.CharacterDto;
+import ProfessionalJavaDeveloper.character.dto.CreateCharacterDto;
+import ProfessionalJavaDeveloper.character.dto.UpdateCharacterDto;
 import ProfessionalJavaDeveloper.character.entity.Character;
-import org.mapstruct.InjectionStrategy;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.NullValueCheckStrategy;
+import ProfessionalJavaDeveloper.user.entity.User;
+import org.mapstruct.*;
 
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface CharacterMapper {
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "lvl", source = "lvl")
-    @Mapping(target = "sex", source = "sex")
-    @Mapping(target = "characterClass", source = "characterClass")
-    @Mapping(target = "strength", source = "strength")
-    @Mapping(target = "dexterity", source = "dexterity")
-    @Mapping(target = "vitality", source = "vitality")
-    @Mapping(target = "exp", source = "exp")
-    @Mapping(target = "gold", source = "gold")
-    @Mapping(target = "attributePoints", source = "attributePoints")
-    @Mapping(target = "hp", source = "hp")
-    @Mapping(target = "maxHp", source = "maxHp")
-    @Mapping(target = "isAlive", source = "isAlive")
-    CharacterDto convertCharacterToCharacterDto(Character character);
+    @Mapping(target = "userId", source = "userId", qualifiedByName = "mapUser")
+    CharacterDto characterToCharacterDto(Character character);
+
+    Character createCharacterDtoToCharacter(CreateCharacterDto createCharacterDto);
+
+    default Character updateCharacterDtoToCharacter(Character character, UpdateCharacterDto updateCharacterDto){
+        character.setStrength(updateCharacterDto.getStrength());
+        character.setDexterity(updateCharacterDto.getDexterity());
+        character.setVitality(updateCharacterDto.getVitality());
+        character.setLvl(updateCharacterDto.getLvl());
+        character.setMaxHp(updateCharacterDto.getMaxHp());
+        character.setHp(updateCharacterDto.getMaxHp());
+        character.setAttributePoints(updateCharacterDto.getAttributePoints());
+        character.setExp(updateCharacterDto.getExp());
+        return character;
+    }
+
+    @Named("mapUser")
+    default long mapUser(User user){
+        return user.getId();
+    }
 }

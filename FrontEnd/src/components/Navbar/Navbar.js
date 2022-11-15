@@ -20,6 +20,14 @@ const test = () => {
 
 const loginbtn = () => (
     <form method="post" action="http://localhost:8080/login">
+    <p>
+    <label for="username" class="sr-only">Username</label>
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus=""/>
+    </p>
+    <p>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required=""/>
+    </p>
     <button type="submit">LogIn</button>
     </form>
 )

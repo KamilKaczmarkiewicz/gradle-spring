@@ -20,6 +20,7 @@ public class UserDto {
     private String userName;
     private String name;
     private String lastName;
+    private String password;
     private Set<CharacterDto> characterDtos;
 
     public static User dtoToEntityMapper(UserDto userDto){

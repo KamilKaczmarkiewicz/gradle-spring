@@ -2,9 +2,9 @@ package ProfessionalJavaDeveloper.character.entity;
 
 import ProfessionalJavaDeveloper.character.entity.enums.CharacterClass;
 import ProfessionalJavaDeveloper.character.entity.enums.Sex;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import ProfessionalJavaDeveloper.user.entity.User;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
@@ -14,7 +14,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@SuperBuilder
 @Table(name="characters")
 public class Character extends Creature {
 
@@ -34,4 +36,28 @@ public class Character extends Creature {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "character_class")
     private CharacterClass characterClass;
+
+    /**
+     * Character's current Experience Points.
+     */
+    private int exp;
+
+    /**
+     * Character's gold in possession.
+     */
+    private int gold;
+
+    /**
+     * Character's available points that can be distributed between stats.
+     */
+    @Column(name = "attribute_points")
+    @Builder.Default
+    private int attributePoints = 3;
+
+    /**
+     * Character's userID.
+     */
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User userId;
 }

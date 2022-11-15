@@ -1,8 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const getUser = () => {
-    axios.get(`http://localhost:8080/users`, 
+const registerUser = () => {
+    const body = 
+    {
+        "userName": "usernamekams",
+        "name": "namekams",
+        "lastName": "lastnamekams",
+        "password": "pass123"
+    }
+    axios.post(`http://localhost:8080/users/register`, 
+    body,
     {withCredentials: true}
     )
       .then(res => {
@@ -37,7 +45,7 @@ const Register = () => {
     return (
         <div>
             <h1>Register</h1>
-            <button onClick={getUser}>click me</button>
+            <button onClick={registerUser}>Rejestracja TEST</button>
             <form onSubmit={(e) => onSubmit(e)}>
                     <div className="form-group">
                         <input
