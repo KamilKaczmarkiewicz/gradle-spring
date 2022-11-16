@@ -1,6 +1,6 @@
-INSERT INTO users (name, last_name, password, user_name) VALUES ('Jan', 'Kowalski', '$2a$12$cixRvbRvgJd7Pi7Q.0IP5ub.QiIThQpaE7x3Hk6v2MrN/FNUvwCse', 'user');
-INSERT INTO users (name, last_name, password, user_name) VALUES ('Piotr', 'Mokry', '$2a$12$cixRvbRvgJd7Pi7Q.0IP5ub.QiIThQpaE7x3Hk6v2MrN/FNUvwCse', 'piter');
-INSERT INTO users (name, last_name, password, user_name) VALUES ('Ewa', 'Laska', '$2a$12$cixRvbRvgJd7Pi7Q.0IP5ub.QiIThQpaE7x3Hk6v2MrN/FNUvwCse', 'awe');
+INSERT INTO users (first_name, last_name, password, user_name) VALUES ('Jan', 'Kowalski', '$2a$12$cixRvbRvgJd7Pi7Q.0IP5ub.QiIThQpaE7x3Hk6v2MrN/FNUvwCse', 'user');
+INSERT INTO users (first_name, last_name, password, user_name) VALUES ('Piotr', 'Mokry', '$2a$12$cixRvbRvgJd7Pi7Q.0IP5ub.QiIThQpaE7x3Hk6v2MrN/FNUvwCse', 'piter');
+INSERT INTO users (first_name, last_name, password, user_name) VALUES ('Ewa', 'Laska', '$2a$12$cixRvbRvgJd7Pi7Q.0IP5ub.QiIThQpaE7x3Hk6v2MrN/FNUvwCse', 'awe');
 
 INSERT INTO characters
 (name, lvl, strength, dexterity, vitality, exp, gold, attribute_points, hp, max_hp, is_alive, sex, character_class, user_id)

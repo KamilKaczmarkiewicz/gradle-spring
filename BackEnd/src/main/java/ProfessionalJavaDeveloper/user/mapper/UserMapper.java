@@ -9,13 +9,13 @@ import org.mapstruct.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+//TODO change all of this
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface UserMapper {
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "userName", source = "username")
-    @Mapping(target = "name", source = "name")
+    @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "password", source = "password")
     @Mapping(target = "lastName", source = "lastName")
     @Mapping(target = "characterDtos", source = "characters", qualifiedByName = "mapCharacters")

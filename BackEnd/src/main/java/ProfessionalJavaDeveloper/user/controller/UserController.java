@@ -1,6 +1,6 @@
 package ProfessionalJavaDeveloper.user.controller;
 
-import ProfessionalJavaDeveloper.user.dto.CreateUserRequest;
+import ProfessionalJavaDeveloper.user.dto.CreateUserDto;
 import ProfessionalJavaDeveloper.user.dto.UserDto;
 import ProfessionalJavaDeveloper.user.entity.User;
 import ProfessionalJavaDeveloper.user.mapper.UserMapper;
@@ -28,6 +28,7 @@ public class UserController {
 
     private UserMapper userMapper;
 
+    //TODO check when to encode password
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
@@ -65,11 +66,15 @@ public class UserController {
                         .build());
     }
 
+    //TODO add comments
+    //TODO add logs
+
+    //TODO make it nicer
     @PostMapping("/register")
-    public ResponseEntity<UserDto> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<UserDto> createUser(@RequestBody CreateUserDto request) {
         User user = User.builder()
                 .userName(request.getUserName())
-                .name(request.getName())
+                .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
                 .build();
@@ -77,14 +82,6 @@ public class UserController {
         return ResponseEntity
                 .ok(userMapper.convertUserToUserDto(user));
     }
-
-//    @GetMapping("/register")
-//    public ResponseEntity registerUser(){
-//        return ResponseEntity
-//                .ok(userService.findAll().stream()
-//                        .map(value -> userMapper.convertUserToUserDto(value))
-//                        .collect(Collectors.toList()));
-//    }
 
     @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser(Principal principal){
@@ -99,15 +96,6 @@ public class UserController {
     @GetMapping("/my-name")
     public String getCurrentUserName(Principal principal){
         return principal.getName();
-    }
-
-    @GetMapping("/redirect-to-home")
-    public String redirectToHome(){
-        String body =
-                "<HTML><body> <h1 style=\"text-align: center;\">" +
-                        "<a href=\"http://localhost:3000/\">Click me to go to main site :D</a>" +
-                        "</h1></body></HTML>";
-        return (body);
     }
 
 }

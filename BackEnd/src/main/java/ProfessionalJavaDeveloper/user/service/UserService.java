@@ -60,6 +60,7 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
+    //TODO check it
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user =  userRepository.findByUserName(username);

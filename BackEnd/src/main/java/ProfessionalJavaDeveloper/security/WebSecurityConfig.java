@@ -30,6 +30,8 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        //TODO
+        // lots of work to make it works well
         http
                 .cors().and()
                 .csrf().disable()
@@ -60,7 +62,8 @@ public class WebSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
+        //TODO
+        //   Check if well done
         configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000", "*"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST", "DELETE", "PUT"));
         configuration.setAllowedHeaders(Arrays.asList("*"));

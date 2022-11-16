@@ -29,26 +29,41 @@ public class User implements UserDetails {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
+    //TODO
+    // add mail
+
     /**
      * User's login and he's representation in app.
      */
     @Column(name = "user_name")
     private String userName;
 
+    /**
+     * User's password, encoded by bCryptPasswordEncoder.
+     */
     private String password;
 
     /**
      * User's first name.
      */
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
+    /**
+     * User's last name.
+     */
     @Column(name = "last_name")
     private String lastName;
 
+    /**
+     * User's set of characters.
+     */
     @OneToMany
     @JoinColumn(name = "user_id")
     private Set<Character> characters;
 
+    //TODO
+    //  authorities
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("USER"));
@@ -64,6 +79,8 @@ public class User implements UserDetails {
         return userName;
     }
 
+    //TODO
+    //  add variables to below methods
     @Override
     public boolean isAccountNonExpired() {
         return true;
