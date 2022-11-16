@@ -50,6 +50,7 @@ public class Character extends Creature {
     @Builder.Default
     private int attributePoints = 3;
 
+    //TODO change userId to user
     /**
      * Character's userID.
      */
