@@ -20,10 +20,6 @@ import javax.persistence.*;
 @Table(name="characters")
 public class Character extends Creature {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long id;
-
     /**
      * Sex of the character.
      */

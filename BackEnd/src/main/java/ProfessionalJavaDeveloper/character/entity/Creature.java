@@ -18,6 +18,10 @@ import javax.persistence.*;
 @MappedSuperclass
 public class Creature {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private long id;
+
     /**
      * Creature's name.
      */
