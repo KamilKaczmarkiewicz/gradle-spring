@@ -11,7 +11,7 @@ import org.mapstruct.*;
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface CharacterMapper {
 
-    @Mapping(target = "userId", source = "userId", qualifiedByName = "mapUser")
+    @Mapping(target = "userId", source = "user", qualifiedByName = "mapUser")
     CharacterDto characterToCharacterDto(Character character);
 
     Character createCharacterDtoToCharacter(CreateCharacterDto createCharacterDto);

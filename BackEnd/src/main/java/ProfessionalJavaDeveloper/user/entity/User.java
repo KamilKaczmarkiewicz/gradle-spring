@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -58,9 +59,9 @@ public class User implements UserDetails {
     /**
      * User's set of characters.
      */
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private Set<Character> characters;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
+    @Builder.Default
+    private Set<Character> characters = new HashSet<>();
 
     //TODO
     //  authorities

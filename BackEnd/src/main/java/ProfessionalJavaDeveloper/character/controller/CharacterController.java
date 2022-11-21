@@ -6,11 +6,13 @@ import ProfessionalJavaDeveloper.character.entity.Character;
 import ProfessionalJavaDeveloper.character.mapper.CharacterMapper;
 import ProfessionalJavaDeveloper.character.service.CharacterService;
 import ProfessionalJavaDeveloper.character.dto.CharacterDto;
+import ProfessionalJavaDeveloper.user.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -60,7 +62,7 @@ public class CharacterController {
             return ResponseEntity.ok(characterMapper.characterToCharacterDto(character.get()));
         }else {
             logger.error("Character with id " + id + " can't be found.");
-            return   ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
     }
 
@@ -72,6 +74,7 @@ public class CharacterController {
     public ResponseEntity<CharacterDto> createCharacter(@RequestBody CreateCharacterDto request){
         logger.info("Create new character");
         Character character = characterMapper.createCharacterDtoToCharacter(request);
+        character.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         characterService.create(character);
         logger.info("Created new character with id: " + character.getId() + " successful");
         return ResponseEntity.ok(characterMapper.characterToCharacterDto(character));

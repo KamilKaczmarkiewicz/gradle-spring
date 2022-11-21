@@ -2,7 +2,6 @@ package ProfessionalJavaDeveloper.character.service;
 
 import ProfessionalJavaDeveloper.character.repository.CharacterRepository;
 import ProfessionalJavaDeveloper.character.entity.Character;
-import ProfessionalJavaDeveloper.user.entity.User;
 import ProfessionalJavaDeveloper.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,10 +41,6 @@ public class CharacterService {
      * @param character - new character
      */
     public void create(Character character) {
-        //TODO
-        //  change user to the user that calls the methode
-        User user = userRepository.findByUserName("awe").get();
-        character.setUserId(user);
         characterRepository.save(character);
     }
 

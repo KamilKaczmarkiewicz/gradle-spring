@@ -50,11 +50,10 @@ public class Character extends Creature {
     @Builder.Default
     private int attributePoints = 3;
 
-    //TODO change userId to user
     /**
      * Character's userID.
      */
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private User userId;
+    private User user;
 }

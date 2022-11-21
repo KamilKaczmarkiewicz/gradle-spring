@@ -60,12 +60,36 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    //TODO check it
+    /**
+     * Updates the user
+     *
+     * @param user - updated user
+     */
+    public User update(User user){
+        return userRepository.save(user);
+    }
+
+    /**
+     * Deletes the user
+     *
+     * @param user - user to be deleted
+     */
+    public void delete(User user){
+        userRepository.delete(user);
+    }
+
+    /**
+     * Locates the user based on the username
+     *
+     * @param username - the username identifying the user whose data is required
+     * @return user
+     * @throws UsernameNotFoundException - if the user could not be found
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user =  userRepository.findByUserName(username);
-        if (user.isEmpty()) {//ToDo make it nicer
-            throw new UsernameNotFoundException("");
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException(username);
         }
         return user.get();
     }

@@ -73,6 +73,6 @@ public class CharacterDto {
         hp = character.getHp();
         maxHp = character.getMaxHp();
         isAlive = character.getIsAlive();
-        userId = character.getUserId().getId();
+        userId = character.getUser().getId();
     }
 }
