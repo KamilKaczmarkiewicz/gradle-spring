@@ -30,8 +30,11 @@ public class User implements UserDetails {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    //TODO
-    // add mail
+    /**
+     * User's e-mail address.
+     */
+    @Column(name = "mail")
+    private String mail;
 
     /**
      * User's login and he's representation in app.
@@ -63,6 +66,35 @@ public class User implements UserDetails {
     @Builder.Default
     private Set<Character> characters = new HashSet<>();
 
+    /**
+     *
+     * Indicates whether the user's account has expired.
+     */
+    @Column(name = "is_account_non_expired")
+    @Builder.Default
+    private Boolean isAccountNonExpired = true;
+
+    /**
+     * Indicates whether the user is locked or unlocked.
+     */
+    @Column(name = "is_account_non_locked")
+    @Builder.Default
+    private Boolean isAccountNonLocked = true;
+
+    /**
+     * Indicates whether the user's credentials (password) has expired.
+     */
+    @Column(name = "is_credential_non_expired")
+    @Builder.Default
+    private Boolean isCredentialsNonExpired = true;
+
+    /**
+     * Indicates whether the user is enabled or disabled.
+     */
+    @Column(name = "is_enabled")
+    @Builder.Default
+    private Boolean isEnabled = true;
+
     //TODO
     //  authorities
     @Override
@@ -80,25 +112,23 @@ public class User implements UserDetails {
         return userName;
     }
 
-    //TODO
-    //  add variables to below methods
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return isAccountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return isAccountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return isCredentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }

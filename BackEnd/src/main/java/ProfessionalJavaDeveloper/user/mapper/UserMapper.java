@@ -25,6 +25,7 @@ public interface UserMapper {
         user.setPassword(updateUserDto.getPassword());
         user.setFirstName(updateUserDto.getFirstName());
         user.setLastName(updateUserDto.getLastName());
+        user.setMail(updateUserDto.getMail());
         return user;
     }
 

@@ -16,7 +16,9 @@ public class UserDto {
     @JsonProperty("id")
     private long id;
 
-    //todo username zwracany jest jako null
+    @JsonProperty("mail")
+    private String mail;
+
     @JsonProperty("userName")
     private String userName;
 

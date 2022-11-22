@@ -3,7 +3,12 @@ CREATE TABLE users (
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    user_name VARCHAR(100) NOT NULL
+    user_name VARCHAR(100) NOT NULL,
+    mail VARCHAR(100) NOT NULL,
+    isAccountNonExpired BIT NOT NULL,
+    isAccountNonLocked BIT NOT NULL,
+    isCredentialsNonExpired BIT NOT NULL,
+    isEnabled BIT NOT NULL
 );
 
 CREATE TABLE characters (

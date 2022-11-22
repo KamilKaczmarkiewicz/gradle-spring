@@ -11,6 +11,9 @@ public class CreateUserDto {
     @JsonProperty("nameName")
     private String userName;
 
+    @JsonProperty("mail")
+    private String mail;
+
     @JsonProperty("firstName")
     private String firstName;
 

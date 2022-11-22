@@ -13,6 +13,9 @@ public class UpdateUserDto {
     @JsonProperty("password")
     private String password;
 
+    @JsonProperty("mail")
+    private String mail;
+
     @JsonProperty("firstName")
     private String firstName;
 
