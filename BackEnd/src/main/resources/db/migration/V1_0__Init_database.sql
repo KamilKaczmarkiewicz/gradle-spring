@@ -5,10 +5,10 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     user_name VARCHAR(100) NOT NULL,
     mail VARCHAR(100) NOT NULL,
-    isAccountNonExpired BIT NOT NULL,
-    isAccountNonLocked BIT NOT NULL,
-    isCredentialsNonExpired BIT NOT NULL,
-    isEnabled BIT NOT NULL
+    is_account_non_expired BIT NOT NULL,
+    is_account_non_locked BIT NOT NULL,
+    is_credential_non_expired BIT NOT NULL,
+    is_enabled BIT NOT NULL
 );
 
 CREATE TABLE characters (
