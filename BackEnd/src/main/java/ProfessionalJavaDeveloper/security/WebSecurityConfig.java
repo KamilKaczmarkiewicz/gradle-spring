@@ -38,7 +38,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
 //                .antMatchers("/").hasRole("USER")
                 .antMatchers(HttpMethod.POST, "/users/register").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login", "/sendMail").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
