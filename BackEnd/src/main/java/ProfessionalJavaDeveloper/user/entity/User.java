@@ -3,14 +3,10 @@ package ProfessionalJavaDeveloper.user.entity;
 import ProfessionalJavaDeveloper.character.entity.Character;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -66,6 +62,18 @@ public class User implements UserDetails {
     @Builder.Default
     private Set<Character> characters = new HashSet<>();
 
+    //TODO
+    // is FetchType.EAGER ok here?
+    /**
+     * User's roles
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
+
     /**
      *
      * Indicates whether the user's account has expired.
@@ -95,11 +103,9 @@ public class User implements UserDetails {
     @Builder.Default
     private Boolean isEnabled = true;
 
-    //TODO
-    //  authorities
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("USER"));
+        return roles;
     }
 
     @Override

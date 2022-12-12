@@ -30,4 +30,28 @@ CREATE TABLE characters (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE roles (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE privileges (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE users_roles (
+    user_id BIGINT NOT NULL,
+    role_id BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+
+CREATE TABLE roles_privileges (
+    role_id BIGINT NOT NULL,
+    privileges_id BIGINT NOT NULL,
+    FOREIGN KEY (role_id) REFERENCES roles(id),
+    FOREIGN KEY (privileges_id) REFERENCES privileges(id)
+);
+
 

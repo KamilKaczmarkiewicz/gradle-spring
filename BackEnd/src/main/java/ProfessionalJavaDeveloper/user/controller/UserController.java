@@ -5,6 +5,7 @@ import ProfessionalJavaDeveloper.user.dto.UpdateUserDto;
 import ProfessionalJavaDeveloper.user.dto.UserDto;
 import ProfessionalJavaDeveloper.user.entity.User;
 import ProfessionalJavaDeveloper.user.mapper.UserMapper;
+import ProfessionalJavaDeveloper.user.repository.RoleRepository;
 import ProfessionalJavaDeveloper.user.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,6 +32,8 @@ public class UserController {
     private UserService userService;
 
     private UserMapper userMapper;
+
+    private RoleRepository roleRepository;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -81,6 +85,7 @@ public class UserController {
         logger.info("Create new user");
         User user = userMapper.createUserDtoToUser(request);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER").get()));
         user = userService.create(user);
         logger.info("Created new user with id: " + user.getId() + " successful");
         return ResponseEntity

@@ -20,3 +20,17 @@ VALUES ('Dzikus8', 1, 1, 1, 1, 0, 10, 4, 8, 8, 1, 'MALE', 'HUNTER', 2);
 INSERT INTO characters
 (name, lvl, strength, dexterity, vitality, exp, gold, attribute_points, hp, max_hp, is_alive, sex, character_class, user_id)
 VALUES ('SzybkaElwka', 1, 1, 1, 1, 0, 10, 4, 8, 8, 1, 'FEMALE', 'MAGE', 3);
+
+INSERT INTO roles (name) VALUES ('ROLE_USER');
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+
+INSERT INTO privileges (name) VALUES ('USER_PRIVILEGE');
+INSERT INTO privileges (name) VALUES ('ADMIN_PRIVILEGE');
+
+INSERT INTO users_roles (user_id, role_id) VALUES (1,1);
+INSERT INTO users_roles (user_id, role_id) VALUES (2,1);
+INSERT INTO users_roles (user_id, role_id) VALUES (2,2);
+INSERT INTO users_roles (user_id, role_id) VALUES (3,1);
+
+INSERT INTO roles_privileges (role_id, privileges_id) VALUES (1,1);
+INSERT INTO roles_privileges (role_id, privileges_id) VALUES (2,2);

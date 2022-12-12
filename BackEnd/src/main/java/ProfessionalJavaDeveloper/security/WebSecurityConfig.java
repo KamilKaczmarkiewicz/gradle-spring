@@ -36,7 +36,7 @@ public class WebSecurityConfig {
                 .cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-//                .antMatchers("/").hasRole("USER")
+                .antMatchers("/users/my-name").hasAuthority("ROLE_ADMIN")
                 .antMatchers(HttpMethod.POST, "/users/register").permitAll()
                 .antMatchers("/login", "/sendMail").permitAll()
                 .anyRequest()
