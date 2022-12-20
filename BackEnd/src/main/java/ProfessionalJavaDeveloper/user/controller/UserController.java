@@ -40,10 +40,12 @@ public class UserController {
     @Autowired
     public UserController(UserService userService,
                           UserMapper userMapper,
-                          BCryptPasswordEncoder bCryptPasswordEncoder){
+                          BCryptPasswordEncoder bCryptPasswordEncoder,
+                          RoleRepository roleRepository){
         this.userService = userService;
         this.userMapper = userMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.roleRepository = roleRepository;
     }
 
     /**
@@ -85,7 +87,7 @@ public class UserController {
         logger.info("Create new user");
         User user = userMapper.createUserDtoToUser(request);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER").get()));
+        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_ADMIN").get()));
         user = userService.create(user);
         logger.info("Created new user with id: " + user.getId() + " successful");
         return ResponseEntity
@@ -136,6 +138,7 @@ public class UserController {
      */
     @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser(Principal principal){
+        logger.info("Get ME for name: " + principal.getName());
         return userService.find(principal.getName())
                 .map(value -> ResponseEntity
                         .ok(userMapper.userToUserDto(value)))

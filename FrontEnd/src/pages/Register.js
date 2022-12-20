@@ -5,9 +5,10 @@ const registerUser = () => {
     const body = 
     {
         "userName": "usernamekams",
-        "name": "namekams",
+        "firstName": "namekams",
         "lastName": "lastnamekams",
-        "password": "pass123"
+        "password": "pass123",
+        "mail": "kams@wp.pl"
     }
     axios.post(`http://localhost:8080/users/register`, 
     body,
@@ -22,24 +23,21 @@ const Register = () => {
 
 
     const [formData, setFormData] = useState({
+        user_name: '',
         first_name: '',
         last_name: '',
         email: '',
-        password: '',
-        re_password: '',
+        password: ''
     })
 
-    const { first_name, last_name, email, password, re_password } = formData
+    const { user_name, first_name, last_name, email, password } = formData
 
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value })
 
     const onSubmit = (e) => {
-        e.preventDefault()
-
-        if (password === re_password) {
-            console.log("rejestracja")
-        }
+        e.preventDefault();
+        console.log("rejestracja");
     }
 
     return (
@@ -47,6 +45,17 @@ const Register = () => {
             <h1>Register</h1>
             <button onClick={registerUser}>Rejestracja TEST</button>
             <form onSubmit={(e) => onSubmit(e)}>
+                    <div className="form-group">
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Wpisz nazwę użytkownika"
+                            name="user_name"
+                            value={user_name}
+                            onChange={(e) => onChange(e)}
+                            required
+                        />
+                    </div>
                     <div className="form-group">
                         <input
                             className="form-control"
@@ -87,18 +96,6 @@ const Register = () => {
                             placeholder="Wpisz hasło*"
                             name="password"
                             value={password}
-                            onChange={(e) => onChange(e)}
-                            minLength="6"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input
-                            className="form-control"
-                            type="password"
-                            placeholder="Potwierdź hasło*"
-                            name="re_password"
-                            value={re_password}
                             onChange={(e) => onChange(e)}
                             minLength="6"
                             required
